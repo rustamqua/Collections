@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.2.2)
+  - SnapKit (5.0.1)
+  - SwiftLint (0.39.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - SnapKit (~> 5.0.0)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SnapKit
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+
+PODFILE CHECKSUM: ebbe773a0f2c146a416734ec1aa495b262cf4248
+
+COCOAPODS: 1.8.4
