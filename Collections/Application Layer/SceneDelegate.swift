@@ -15,9 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		guard let scene = (scene as? UIWindowScene) else { return }
 		let window = UIWindow(windowScene: scene)
-		let nav = UINavigationController()
-		nav.viewControllers = [ViewController()]
-		window.rootViewController = nav
+		let tabBar = UITabBarController()
+		let searchNav = UINavigationController()
+		let collectionNav = UINavigationController()
+		searchNav.viewControllers = [SearchViewController()]
+		collectionNav.viewControllers = [CollectionsViewController()]
+		let searchBar = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
+		let collectionBar = UITabBarItem(title: "Collections", image: UIImage(systemName: "book"), selectedImage: nil)
+		collectionNav.tabBarItem = collectionBar
+		searchNav.tabBarItem = searchBar
+		tabBar.viewControllers = [searchNav, collectionNav]
+		window.rootViewController = tabBar
 		self.window = window
 		window.makeKeyAndVisible()
 	}

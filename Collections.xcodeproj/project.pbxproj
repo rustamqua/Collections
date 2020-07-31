@@ -8,9 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		67DC4D9C023B70DFEA701B78 /* Pods_Collections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933C82C1420B99C6DA68DBCC /* Pods_Collections.framework */; };
+		9C3ACD1024D34A6800B347BB /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD0F24D34A6800B347BB /* CollectionsViewController.swift */; };
+		9C3ACD1224D35F5000B347BB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD1124D35F5000B347BB /* API.swift */; };
+		9C3ACD1424D36B3B00B347BB /* CodableTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD1324D36B3B00B347BB /* CodableTerm.swift */; };
+		9C3ACD1924D36F1900B347BB /* CodableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD1824D36F1900B347BB /* CodableCollection.swift */; };
+		9C3ACD1B24D3705A00B347BB /* SearchListTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD1A24D3705A00B347BB /* SearchListTerms.swift */; };
+		9C3ACD1E24D3722900B347BB /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD1D24D3722900B347BB /* ConfigurableCell.swift */; };
+		9C3ACD2024D3724D00B347BB /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD1F24D3724D00B347BB /* CellConfigurator.swift */; };
+		9C3ACD2324D3738700B347BB /* TermTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD2224D3738700B347BB /* TermTableViewCell.swift */; };
+		9C3ACD2524D3739700B347BB /* TermCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD2424D3739700B347BB /* TermCollectionTableViewCell.swift */; };
+		9C3ACD2724D3741F00B347BB /* TermSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD2624D3741F00B347BB /* TermSearchViewModel.swift */; };
+		9C3ACD2924D3748B00B347BB /* TermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3ACD2824D3748B00B347BB /* TermService.swift */; };
 		9CCE3E6224D2D687003BB122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E6124D2D687003BB122 /* AppDelegate.swift */; };
 		9CCE3E6424D2D687003BB122 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E6324D2D687003BB122 /* SceneDelegate.swift */; };
-		9CCE3E6624D2D687003BB122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E6524D2D687003BB122 /* ViewController.swift */; };
+		9CCE3E6624D2D687003BB122 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E6524D2D687003BB122 /* SearchViewController.swift */; };
 		9CCE3E6C24D2D687003BB122 /* Collections.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E6A24D2D687003BB122 /* Collections.xcdatamodeld */; };
 		9CCE3E6E24D2D68A003BB122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE3E6D24D2D68A003BB122 /* Assets.xcassets */; };
 		9CCE3E7124D2D68A003BB122 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE3E6F24D2D68A003BB122 /* LaunchScreen.storyboard */; };
@@ -18,10 +29,21 @@
 
 /* Begin PBXFileReference section */
 		933C82C1420B99C6DA68DBCC /* Pods_Collections.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Collections.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C3ACD0F24D34A6800B347BB /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
+		9C3ACD1124D35F5000B347BB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		9C3ACD1324D36B3B00B347BB /* CodableTerm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTerm.swift; sourceTree = "<group>"; };
+		9C3ACD1824D36F1900B347BB /* CodableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableCollection.swift; sourceTree = "<group>"; };
+		9C3ACD1A24D3705A00B347BB /* SearchListTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTerms.swift; sourceTree = "<group>"; };
+		9C3ACD1D24D3722900B347BB /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
+		9C3ACD1F24D3724D00B347BB /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
+		9C3ACD2224D3738700B347BB /* TermTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermTableViewCell.swift; sourceTree = "<group>"; };
+		9C3ACD2424D3739700B347BB /* TermCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		9C3ACD2624D3741F00B347BB /* TermSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermSearchViewModel.swift; sourceTree = "<group>"; };
+		9C3ACD2824D3748B00B347BB /* TermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermService.swift; sourceTree = "<group>"; };
 		9CCE3E5E24D2D687003BB122 /* Collections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collections.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CCE3E6124D2D687003BB122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CCE3E6324D2D687003BB122 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9CCE3E6524D2D687003BB122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9CCE3E6524D2D687003BB122 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9CCE3E6B24D2D687003BB122 /* Collections.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Collections.xcdatamodel; sourceTree = "<group>"; };
 		9CCE3E6D24D2D68A003BB122 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CCE3E7024D2D68A003BB122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +73,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9C3ACD1C24D371D900B347BB /* ConfigurableCell */ = {
+			isa = PBXGroup;
+			children = (
+				9C3ACD1D24D3722900B347BB /* ConfigurableCell.swift */,
+				9C3ACD1F24D3724D00B347BB /* CellConfigurator.swift */,
+			);
+			path = ConfigurableCell;
+			sourceTree = "<group>";
+		};
+		9C3ACD2124D372C600B347BB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9C3ACD2824D3748B00B347BB /* TermService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		9C5197D924D2F94F00505FD4 /* Application Layer */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +102,7 @@
 		9C5197DA24D2F95B00505FD4 /* Business Layer */ = {
 			isa = PBXGroup;
 			children = (
+				9C3ACD2124D372C600B347BB /* Service */,
 				9CCE3E6A24D2D687003BB122 /* Collections.xcdatamodeld */,
 			);
 			path = "Business Layer";
@@ -71,6 +111,7 @@
 		9C5197DB24D2F96400505FD4 /* Data Access Layer */ = {
 			isa = PBXGroup;
 			children = (
+				9C3ACD1124D35F5000B347BB /* API.swift */,
 			);
 			path = "Data Access Layer";
 			sourceTree = "<group>";
@@ -78,6 +119,7 @@
 		9C5197DC24D2F97B00505FD4 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
+				9C3ACD1C24D371D900B347BB /* ConfigurableCell */,
 				9C5197E024D2F9FE00505FD4 /* View */,
 				9C5197DF24D2F9E800505FD4 /* View Model */,
 				9C5197DE24D2F9DE00505FD4 /* Model */,
@@ -89,7 +131,8 @@
 		9C5197DD24D2F9D900505FD4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9CCE3E6524D2D687003BB122 /* ViewController.swift */,
+				9CCE3E6524D2D687003BB122 /* SearchViewController.swift */,
+				9C3ACD0F24D34A6800B347BB /* CollectionsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -97,6 +140,9 @@
 		9C5197DE24D2F9DE00505FD4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9C3ACD1324D36B3B00B347BB /* CodableTerm.swift */,
+				9C3ACD1824D36F1900B347BB /* CodableCollection.swift */,
+				9C3ACD1A24D3705A00B347BB /* SearchListTerms.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,6 +150,7 @@
 		9C5197DF24D2F9E800505FD4 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				9C3ACD2624D3741F00B347BB /* TermSearchViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -111,6 +158,8 @@
 		9C5197E024D2F9FE00505FD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9C3ACD2224D3738700B347BB /* TermTableViewCell.swift */,
+				9C3ACD2424D3739700B347BB /* TermCollectionTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,9 +336,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CCE3E6624D2D687003BB122 /* ViewController.swift in Sources */,
+				9C3ACD2924D3748B00B347BB /* TermService.swift in Sources */,
+				9C3ACD1E24D3722900B347BB /* ConfigurableCell.swift in Sources */,
+				9C3ACD1924D36F1900B347BB /* CodableCollection.swift in Sources */,
+				9C3ACD2024D3724D00B347BB /* CellConfigurator.swift in Sources */,
+				9CCE3E6624D2D687003BB122 /* SearchViewController.swift in Sources */,
 				9CCE3E6224D2D687003BB122 /* AppDelegate.swift in Sources */,
+				9C3ACD2324D3738700B347BB /* TermTableViewCell.swift in Sources */,
+				9C3ACD1024D34A6800B347BB /* CollectionsViewController.swift in Sources */,
+				9C3ACD1B24D3705A00B347BB /* SearchListTerms.swift in Sources */,
 				9CCE3E6424D2D687003BB122 /* SceneDelegate.swift in Sources */,
+				9C3ACD1424D36B3B00B347BB /* CodableTerm.swift in Sources */,
+				9C3ACD1224D35F5000B347BB /* API.swift in Sources */,
+				9C3ACD2724D3741F00B347BB /* TermSearchViewModel.swift in Sources */,
+				9C3ACD2524D3739700B347BB /* TermCollectionTableViewCell.swift in Sources */,
 				9CCE3E6C24D2D687003BB122 /* Collections.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
