@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
 		tableViewSetup()
 	}
 	
-	func tableViewSetup() {
+	private func tableViewSetup() {
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { (make) in
 			make.edges.equalTo(view.safeAreaLayoutGuide)
@@ -37,14 +37,14 @@ class SearchViewController: UIViewController {
 		tableView.separatorStyle = .none
 	}
 	
-	func navigationSetup() {
+	private func navigationSetup() {
 		navigationItem.title = "Search"
 		navigationController?.navigationBar.prefersLargeTitles = true
 		navigationItem.largeTitleDisplayMode = .always
 		navigationItem.searchController = searchController
 	}
 	
-	func searchControllerSetup() {
+	private func searchControllerSetup() {
 		searchController.searchBar.delegate = self
 		searchController.obscuresBackgroundDuringPresentation = false
 		searchController.searchBar.placeholder = "Input text..."

@@ -63,18 +63,28 @@ class TermTableViewCell: UITableViewCell, ConfigurableCell {
 		return stack
 	}()
 	
-	func layoutUI() {
+	lazy var mainView: UIView = {
+		let view = UIView()
+		view.addSubview(mainStack)
+		view.layer.cornerRadius = 20
+		view.clipsToBounds = true
+		view.backgroundColor = .white
+		return view
+	}()
+	
+	lazy var mainStack: UIStackView = {
 		let stackView = UIStackView()
 		stackView.axis = .vertical
 		stackView.alignment = .leading
 		stackView.distribution = .fill
-		let view = UIView()
-		view.addSubview(stackView)
-		view.layer.cornerRadius = 20
-		view.clipsToBounds = true
-		view.backgroundColor = .white
-		addSubview(view)
-		view.snp.makeConstraints { (make) in
+		stackView.addArrangedSubview(term)
+		stackView.addArrangedSubview(defAndRatingStack)
+		return stackView
+	}()
+	
+	private func layoutUI() {
+		addSubview(mainView)
+		mainView.snp.makeConstraints { (make) in
 			make.bottom.equalToSuperview().offset(-20)
 			make.top.equalToSuperview().offset(20)
 			make.height.greaterThanOrEqualTo(150)
@@ -82,19 +92,17 @@ class TermTableViewCell: UITableViewCell, ConfigurableCell {
 			make.right.equalToSuperview().offset(-15)
 
 		}
-		stackView.snp.makeConstraints { (make) in
+		mainStack.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview().inset(10)
 		}
-		stackView.addArrangedSubview(term)
-		stackView.addArrangedSubview(defAndRatingStack)
 		thumUpImageView.snp.makeConstraints { (make) in
 			make.width.equalTo(30)
 		}
 		definition.snp.makeConstraints { (make) in
-			make.width.greaterThanOrEqualTo(280)
+			make.width.greaterThanOrEqualTo(250)
 		}
 		ratingStack.snp.makeConstraints { (make) in
-			make.width.equalTo(70)
+			make.width.lessThanOrEqualTo(70)
 		}
 		defAndRatingStack.snp.makeConstraints { (make) in
 			make.left.equalToSuperview()
