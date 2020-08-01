@@ -29,7 +29,7 @@ class TermTableViewCell: UITableViewCell, ConfigurableCell {
 	
 	lazy var rating: UILabel = {
 		let label = UILabel()
-		label.font = .boldSystemFont(ofSize: 15)
+		label.font = .boldSystemFont(ofSize: 13)
 		label.textAlignment = .center
 		return label
 	}()

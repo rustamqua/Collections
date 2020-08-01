@@ -8,12 +8,15 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 class SearchViewController: UIViewController {
 
 	let searchController = UISearchController(searchResultsController: nil)
 	let viewModel = TermSearchViewModel()
 	let tableView = UITableView()
+	let coreDataRep = CoreDataRepository()
+	lazy var fetchedResultsController: NSFetchedResultsController<Term> = NSFetchedResultsController(fetchRequest: coreDataRep.historyTermRequest(), managedObjectContext: coreDataRep.context, sectionNameKeyPath: nil, cacheName: nil)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -21,6 +24,11 @@ class SearchViewController: UIViewController {
 		navigationSetup()
 		searchControllerSetup()
 		tableViewSetup()
+		do {
+			try fetchedResultsController.performFetch()
+		} catch {
+			debugPrint(error)
+		}
 	}
 	
 	private func tableViewSetup() {
@@ -30,11 +38,12 @@ class SearchViewController: UIViewController {
 		}
 		tableView.dataSource = self
 		tableView.delegate = self
-		tableView.register(TermTableViewCell.self, forCellReuseIdentifier: TableCellConfigurator<TermTableViewCell, CodableTerm>.reuseId)
+		tableView.register(TermTableViewCell.self, forCellReuseIdentifier: TermCell.reuseId)
 		viewModel.reloadCallback = {[weak self] in
 			self?.tableView.reloadData()
 		}
 		tableView.separatorStyle = .none
+		tableView.backgroundColor = .systemGray6
 	}
 	
 	private func navigationSetup() {
@@ -53,13 +62,29 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: UITableViewDataSource {
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		viewModel.termList.count
+		return viewModel.showingHistory ? fetchedResultsController.fetchedObjects!.count : viewModel.termList.count
+	}
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		1
+	}
+	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return viewModel.showingHistory ? "History" : ""
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let item = viewModel.termList[indexPath.row]
-		let cell = tableView.dequeueReusableCell(withIdentifier: type(of: item).reuseId)!
+		var item: TermCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: TermCell.reuseId)!
+		if viewModel.showingHistory {
+			let cdItem = fetchedResultsController.fetchedObjects![indexPath.row]
+			let term = DataConverter.fromCoreDataTerm(cdTerm: cdItem)
+			item = TermCell(item: term)
+		} else {
+			item = viewModel.termList[indexPath.row] as! TermCell
+		}
 		item.configureCell(cell: cell)
 		return cell
 	}
@@ -68,10 +93,27 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
 	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if let termCell = viewModel.termList[indexPath.row] as? TermCell {
+			let detailVC = TermDetailViewController(term: termCell.item)
+			navigationController?.pushViewController(detailVC, animated: true)
+		}
+	}
+	
 }
 
 extension SearchViewController: UISearchBarDelegate {
+	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		viewModel.showingHistory = false
 		viewModel.searchRequest(for: searchBar.text!)
 	}
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		if searchText.isEmpty {
+			viewModel.showingHistory = true
+			tableView.reloadData()
+		}
+	}
+	
 }

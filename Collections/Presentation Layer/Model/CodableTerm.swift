@@ -14,4 +14,5 @@ struct CodableTerm: Codable {
 	let author: String
 	let word: String
 	let example: String
+	let defid: Int
 }

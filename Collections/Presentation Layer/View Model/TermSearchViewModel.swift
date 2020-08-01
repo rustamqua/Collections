@@ -8,17 +8,19 @@
 
 import Foundation
 
+typealias TermCell = TableCellConfigurator<TermTableViewCell, CodableTerm>
 class TermSearchViewModel {
+	
 	let service = TermService()
 	var termList = [CellConfigurator]()
-
 	var reloadCallback: (() -> Void)?
+	var showingHistory = true
 	
 	func searchRequest(for word: String) {
 		service.getTermList(for: word) {[weak self] (searchListModel) in
 			self?.termList = []
 			searchListModel.list.forEach { (term) in
-				self?.termList.append(TableCellConfigurator<TermTableViewCell, CodableTerm>(item: term))
+				self?.termList.append(TermCell(item: term))
 			}
 			self?.reloadCallback?()
 		}

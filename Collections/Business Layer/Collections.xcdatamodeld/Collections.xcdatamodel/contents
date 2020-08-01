@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Term" representedClassName="Term" syncable="YES" codeGenerationType="class">
-        <attribute name="author" optional="YES" attributeType="String"/>
-        <attribute name="definition" optional="YES" attributeType="String"/>
-        <attribute name="example" optional="YES" attributeType="String"/>
-        <attribute name="thumbsUp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="word" optional="YES" attributeType="String"/>
+        <attribute name="author" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="defid" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="definition" attributeType="String"/>
+        <attribute name="example" attributeType="String"/>
+        <attribute name="thumbsUp" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="word" attributeType="String"/>
         <relationship name="betweenTermAndCollection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TermCollection" inverseName="betweenTermAndCollection" inverseEntity="TermCollection"/>
     </entity>
     <entity name="TermCollection" representedClassName="TermCollection" syncable="YES" codeGenerationType="class">
-        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="betweenTermAndCollection" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Term" inverseName="betweenTermAndCollection" inverseEntity="Term"/>
     </entity>
     <elements>
-        <element name="Term" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Term" positionX="-185.50390625" positionY="36.2421875" width="128" height="163"/>
         <element name="TermCollection" positionX="263.85546875" positionY="-0.515625" width="128" height="88"/>
     </elements>
 </model>
