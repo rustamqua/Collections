@@ -27,6 +27,10 @@ class SearchViewController: UIViewController {
 		frcSetup()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		tableView.reloadData()
+	}
+	
 	private func frcSetup() {
 		fetchedResultsController.delegate = self
 		do {
@@ -104,7 +108,13 @@ extension SearchViewController: UITableViewDelegate {
 			if let termCell = viewModel.termList[indexPath.row] as? TermCell {
 				coreDataRep.createTerm(from:  termCell.item, results: fetchedResultsController.fetchedObjects!)
 			}
-			self.navigationController?.pushViewController(detailVC, animated: true)
+			navigationController?.pushViewController(detailVC, animated: true)
+		} else if viewModel.showingHistory {
+			let term = fetchedResultsController.fetchedObjects![indexPath.row]
+			let detailVC = TermDetailViewController(term: term)
+			term.createdAt = Date()
+			coreDataRep.save(callback: nil)
+			navigationController?.pushViewController(detailVC, animated: true)
 		}
 	}
 	

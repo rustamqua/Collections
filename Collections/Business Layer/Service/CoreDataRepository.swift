@@ -26,6 +26,9 @@ class CoreDataRepository {
 			let term = Term(context: context)
 			DataConverter.fromCodableTerm(codableTerm: codableTerm, cdTerm: term)
 			save(callback: nil)
+		} else {
+			noCopiesCheck[0].createdAt = Date()
+			save(callback: nil)
 		}
 	}
 	
