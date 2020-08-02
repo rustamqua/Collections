@@ -24,6 +24,11 @@ class SearchViewController: UIViewController {
 		navigationSetup()
 		searchControllerSetup()
 		tableViewSetup()
+		frcSetup()
+	}
+	
+	private func frcSetup() {
+		fetchedResultsController.delegate = self
 		do {
 			try fetchedResultsController.performFetch()
 		} catch {
@@ -94,9 +99,12 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let termCell = viewModel.termList[indexPath.row] as? TermCell {
+		if !viewModel.showingHistory, let termCell = viewModel.termList[indexPath.row] as? TermCell {
 			let detailVC = TermDetailViewController(term: termCell.item)
-			navigationController?.pushViewController(detailVC, animated: true)
+			if let termCell = viewModel.termList[indexPath.row] as? TermCell {
+				coreDataRep.createTerm(from:  termCell.item, results: fetchedResultsController.fetchedObjects!)
+			}
+			self.navigationController?.pushViewController(detailVC, animated: true)
 		}
 	}
 	
@@ -112,6 +120,21 @@ extension SearchViewController: UISearchBarDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		if searchText.isEmpty {
 			viewModel.showingHistory = true
+			tableView.reloadData()
+		}
+	}
+	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		viewModel.showingHistory = true
+		tableView.reloadData()
+	}
+	
+}
+
+extension SearchViewController: NSFetchedResultsControllerDelegate {
+	
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+		if type == .insert {
 			tableView.reloadData()
 		}
 	}

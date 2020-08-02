@@ -15,11 +15,17 @@ class TermDetailViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		view.backgroundColor = .white
     }
 	
 	init(term: CodableTerm) {
 		self.term = term
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	init(term: Term) {
+		let convertedTerm = DataConverter.fromCoreDataTerm(cdTerm: term)
+		self.term = convertedTerm
 		super.init(nibName: nil, bundle: nil)
 	}
 	

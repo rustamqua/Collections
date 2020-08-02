@@ -20,22 +20,14 @@ class CoreDataRepository {
 		return request
 	}
 	
-//	func getTerms() -> [Term]? {
-//		let request: NSFetchRequest<Term> = Term.fetchRequest()
-//		var terms: [Term]?
-//			do {
-//				terms = try self.context.fetch(request)
-//			} catch {
-//				debugPrint(error)
-//			}
-//		return terms
-//	}
-	
-//	func createTerm(from codableTerm: CodableTerm) {
-//		let term = Term(context: context)
-//		DataConverter.fromCodableTerm(codableTerm: codableTerm, cdTerm: term)
-//		save(callback: nil)
-//	}
+	func createTerm(from codableTerm: CodableTerm, results: [Term]) {
+		let noCopiesCheck = results.filter {$0.defid == codableTerm.defid}
+		if noCopiesCheck.isEmpty {
+			let term = Term(context: context)
+			DataConverter.fromCodableTerm(codableTerm: codableTerm, cdTerm: term)
+			save(callback: nil)
+		}
+	}
 	
 	func save(callback: (() -> Void)?) {
 		do {

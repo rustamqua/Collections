@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		tabBar.viewControllers = [searchNav, collectionNav]
 		window.rootViewController = tabBar
 		self.window = window
+		window.backgroundColor = .white
 		window.makeKeyAndVisible()
 	}
 

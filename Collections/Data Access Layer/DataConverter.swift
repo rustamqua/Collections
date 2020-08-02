@@ -11,8 +11,7 @@ import UIKit
 
 class DataConverter {
 		
-	static func fromCodableTerm(codableTerm: CodableTerm) -> Term {
-		let cdTerm = Term(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+	static func fromCodableTerm(codableTerm: CodableTerm, cdTerm: Term) {
 		cdTerm.thumbsUp = Int32(codableTerm.thumbsUp)
 		cdTerm.author = codableTerm.author
 		cdTerm.defid = Int32(codableTerm.defid)
@@ -20,7 +19,6 @@ class DataConverter {
 		cdTerm.example = codableTerm.example
 		cdTerm.word = codableTerm.word
 		cdTerm.createdAt = Date()
-		return cdTerm
 	}
 	
 	static func fromCoreDataTerm(cdTerm: Term) -> CodableTerm {
