@@ -85,17 +85,20 @@ extension SearchViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var item: TermCell
-		let cell = tableView.dequeueReusableCell(withIdentifier: TermCell.reuseId)!
-		if viewModel.showingHistory {
+	
+		if viewModel.showingHistory, let cell = tableView.dequeueReusableCell(withIdentifier: TermCell.reuseId) {
 			let cdItem = fetchedResultsController.fetchedObjects![indexPath.row]
 			let term = DataConverter.fromCoreDataTerm(cdTerm: cdItem)
-			item = TermCell(item: term)
+			let item = TermCell(item: term)
+			item.configureCell(cell: cell)
+			return cell
 		} else {
-			item = viewModel.termList[indexPath.row] as! TermCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: type(of: viewModel.termList[indexPath.row]).reuseId)
+			let item = viewModel.termList[indexPath.row]
+			item.configureCell(cell: cell!)
+			return cell!
 		}
-		item.configureCell(cell: cell)
-		return cell
+
 	}
 	
 }

@@ -20,6 +20,19 @@ class CoreDataRepository {
 		return request
 	}
 	
+	func getCollections() -> NSFetchRequest<TermCollection> {
+		let request: NSFetchRequest<TermCollection> = TermCollection.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
+		return request
+	}
+	
+	func createCollection(name: String) {
+		let collection = TermCollection(context: context)
+		collection.name = name
+		collection.updatedAt = Date()
+		save(callback: nil)
+	}
+	
 	func createTerm(from codableTerm: CodableTerm, results: [Term]) {
 		let noCopiesCheck = results.filter {$0.defid == codableTerm.defid}
 		if noCopiesCheck.isEmpty {
