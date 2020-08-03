@@ -17,6 +17,7 @@ class CoreDataRepository {
 	func historyTermRequest() -> NSFetchRequest<Term> {
 		let request: NSFetchRequest<Term> = Term.fetchRequest()
 		request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+		request.predicate = NSPredicate(format: "showingInHistory == true", argumentArray: nil)
 		return request
 	}
 	
@@ -29,9 +30,18 @@ class CoreDataRepository {
 	func createCollection(name: String, from codableTerm: CodableTerm) {
 		let term = Term(context: context)
 		DataConverter.fromCodableTerm(codableTerm: codableTerm, cdTerm: term)
+		term.showingInHistory = false
 		let collection = TermCollection(context: context)
 		collection.name = name
 		collection.updatedAt = Date()
+		collection.addToBetweenTermAndCollection(term)
+		save(callback: nil)
+	}
+	
+	func addTermToCollection(collection: TermCollection, codableTerm: CodableTerm) {
+		let term = Term(context: context)
+		DataConverter.fromCodableTerm(codableTerm: codableTerm, cdTerm: term)
+		term.showingInHistory = false
 		collection.addToBetweenTermAndCollection(term)
 		save(callback: nil)
 	}

@@ -19,6 +19,7 @@ class DataConverter {
 		cdTerm.example = codableTerm.example
 		cdTerm.word = codableTerm.word
 		cdTerm.createdAt = Date()
+		cdTerm.showingInHistory = true
 	}
 	
 	static func fromCoreDataTerm(cdTerm: Term) -> CodableTerm {

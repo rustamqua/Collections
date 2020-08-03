@@ -6,6 +6,7 @@
         <attribute name="defid" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="definition" attributeType="String"/>
         <attribute name="example" attributeType="String"/>
+        <attribute name="showingInHistory" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="thumbsUp" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="word" attributeType="String"/>
         <relationship name="betweenTermAndCollection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TermCollection" inverseName="betweenTermAndCollection" inverseEntity="TermCollection"/>
@@ -16,7 +17,7 @@
         <relationship name="betweenTermAndCollection" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Term" inverseName="betweenTermAndCollection" inverseEntity="Term"/>
     </entity>
     <elements>
-        <element name="Term" positionX="-185.50390625" positionY="36.2421875" width="128" height="163"/>
+        <element name="Term" positionX="-185.50390625" positionY="36.2421875" width="128" height="178"/>
         <element name="TermCollection" positionX="263.85546875" positionY="-0.515625" width="128" height="88"/>
     </elements>
 </model>

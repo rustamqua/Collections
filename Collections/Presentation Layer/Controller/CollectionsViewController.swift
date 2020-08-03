@@ -15,6 +15,7 @@ class CollectionsViewController: UIViewController {
 	let coreDataRep = CoreDataRepository()
 	let tableView = UITableView()
 	lazy var frc = NSFetchedResultsController(fetchRequest: coreDataRep.getCollections(), managedObjectContext: coreDataRep.context, sectionNameKeyPath: nil, cacheName: nil)
+	let viewModel = CollectionsViewModel()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,9 @@ extension CollectionsViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		return CollectionViewTableCell()
+		let cell = CollectionViewTableCell()
+		viewModel.configureView(view: cell, data: frc.fetchedObjects![indexPath.row])
+		return cell
 	}
 	
 }
