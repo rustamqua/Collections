@@ -51,7 +51,6 @@ class SearchViewController: UIViewController {
 		viewModel.reloadCallback = {[weak self] in
 			self?.tableView.reloadData()
 		}
-		tableView.separatorStyle = .none
 		tableView.backgroundColor = .systemGray6
 	}
 	

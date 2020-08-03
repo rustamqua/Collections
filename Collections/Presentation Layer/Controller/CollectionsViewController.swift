@@ -26,6 +26,10 @@ class CollectionsViewController: UIViewController {
 		frcSetup()
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		tableView.reloadData()
+	}
+	
 	func navigationSetup() {
 		navigationItem.title = "Collections"
 		navigationController?.navigationBar.prefersLargeTitles = true
@@ -33,7 +37,6 @@ class CollectionsViewController: UIViewController {
 	}
 	
 	func tableViewSetup() {
-		tableView.separatorStyle = .none
 		tableView.snp.makeConstraints { (make) in
 			make.edges.equalTo(view.safeAreaLayoutGuide)
 		}
@@ -67,4 +70,8 @@ extension CollectionsViewController: UITableViewDataSource {
 
 extension CollectionsViewController: UITableViewDelegate {
 	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let collectionDetailVC = CollectionDetailViewController(collection: frc.fetchedObjects![indexPath.row])
+		navigationController?.pushViewController(collectionDetailVC, animated: true)
+	}
 }
