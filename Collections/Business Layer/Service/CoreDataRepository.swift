@@ -27,7 +27,7 @@ class CoreDataRepository {
 		return request
 	}
 	
-	func createCollection(name: String, from codableTerm: CodableTerm) {
+	func createCollectionFromWord(name: String, from codableTerm: CodableTerm) {
 		let term = Term(context: context)
 		DataConverter.fromCodableTerm(codableTerm: codableTerm, cdTerm: term)
 		term.showingInHistory = false
@@ -35,6 +35,13 @@ class CoreDataRepository {
 		collection.name = name
 		collection.updatedAt = Date()
 		collection.addToBetweenTermAndCollection(term)
+		save(callback: nil)
+	}
+	
+	func createEmptyCollection(name: String) {
+		let collection = TermCollection(context: context)
+		collection.name = name
+		collection.updatedAt = Date()
 		save(callback: nil)
 	}
 	

@@ -49,7 +49,7 @@ class TermDetailViewController: UIViewController {
 		})
 		let submitAction = UIAlertAction(title: "Create", style: .default) { [weak alertController] _ in
 			let answer = alertController!.textFields![0]
-			self.viewModel.cdRep.createCollection(name: answer.text!, from: self.term)
+			self.viewModel.cdRep.createCollectionFromWord(name: answer.text!, from: self.term)
 		}
 		let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
 		alertController?.addAction(submitAction)

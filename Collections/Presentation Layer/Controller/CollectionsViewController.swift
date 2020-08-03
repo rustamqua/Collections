@@ -16,6 +16,7 @@ class CollectionsViewController: UIViewController {
 	let tableView = UITableView()
 	lazy var frc = NSFetchedResultsController(fetchRequest: coreDataRep.getCollections(), managedObjectContext: coreDataRep.context, sectionNameKeyPath: nil, cacheName: nil)
 	let viewModel = CollectionsViewModel()
+	var alertController: UIAlertController?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,15 @@ class CollectionsViewController: UIViewController {
 		navigationSetup()
 		tableViewSetup()
 		frcSetup()
+		alertcontrollerSetup()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
+		do {
+			try self.frc.performFetch()
+		} catch {
+			debugPrint(error)
+		}
 		tableView.reloadData()
 	}
 	
@@ -34,6 +41,26 @@ class CollectionsViewController: UIViewController {
 		navigationItem.title = "Collections"
 		navigationController?.navigationBar.prefersLargeTitles = true
 		navigationItem.largeTitleDisplayMode = .always
+		let btn = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addCollection))
+		navigationItem.rightBarButtonItem = btn
+	}
+	
+	func alertcontrollerSetup() {
+		alertController = UIAlertController(title: "Name of new collection", message: "Write down name of new collection", preferredStyle: .alert)
+		alertController?.addTextField(configurationHandler: { (textField) in
+			textField.placeholder = "Collection Name"
+		})
+		let submitAction = UIAlertAction(title: "Create", style: .default) { [weak alertController] _ in
+			let answer = alertController!.textFields![0]
+			self.coreDataRep.createEmptyCollection(name: answer.text!)
+		}
+		let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+		alertController?.addAction(submitAction)
+		alertController?.addAction(cancelAction)
+	}
+	
+	@objc func addCollection() {
+		present(alertController!, animated: true, completion: nil)
 	}
 	
 	func tableViewSetup() {
@@ -51,6 +78,7 @@ class CollectionsViewController: UIViewController {
 		} catch {
 			debugPrint(error)
 		}
+		frc.delegate = self
 	}
 	
 }
@@ -73,5 +101,16 @@ extension CollectionsViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let collectionDetailVC = CollectionDetailViewController(collection: frc.fetchedObjects![indexPath.row])
 		navigationController?.pushViewController(collectionDetailVC, animated: true)
+		
 	}
+}
+
+extension CollectionsViewController: NSFetchedResultsControllerDelegate {
+		
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+		if type == .insert {
+			tableView.reloadData()
+		}
+	}
+	
 }

@@ -26,6 +26,10 @@ class CollectionDetailViewController: UIViewController {
 		navigationItem.title = collection.name
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		tableView.reloadData()
+	}
+	
 	func tableViewSetup() {
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { (make) in
