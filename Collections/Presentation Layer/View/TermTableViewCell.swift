@@ -81,7 +81,7 @@ class TermTableViewCell: UITableViewCell, ConfigurableCell {
 		stackView.addArrangedSubview(defAndRatingStack)
 		return stackView
 	}()
-	
+		
 	private func layoutUI() {
 		addSubview(mainView)
 		mainView.snp.makeConstraints { (make) in

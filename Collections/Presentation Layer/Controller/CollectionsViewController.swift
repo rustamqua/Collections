@@ -53,8 +53,7 @@ class CollectionsViewController: UIViewController {
 
 extension CollectionsViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return frc.fetchedObjects!.count
-			5
+        return frc.fetchedObjects!.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

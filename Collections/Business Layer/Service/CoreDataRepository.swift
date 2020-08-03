@@ -26,10 +26,13 @@ class CoreDataRepository {
 		return request
 	}
 	
-	func createCollection(name: String) {
+	func createCollection(name: String, from codableTerm: CodableTerm) {
+		let term = Term(context: context)
+		DataConverter.fromCodableTerm(codableTerm: codableTerm, cdTerm: term)
 		let collection = TermCollection(context: context)
 		collection.name = name
 		collection.updatedAt = Date()
+		collection.addToBetweenTermAndCollection(term)
 		save(callback: nil)
 	}
 	
